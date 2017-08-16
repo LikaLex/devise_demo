@@ -1,0 +1,24 @@
+<div class="users" id="test">
+  <p>
+  </p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%= link_to('Delete', user_path(user), method: :delete) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
