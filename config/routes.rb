@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   root to: 'users#index'
-  devise_for :users
+
+  devise_for :users, controllers: {omniauth_callbacks: 'omniauth_callbacks'}
   resources :users do
     patch :block, on: :member
   end
+
   # get 'users/:id'
   # get 'users'
   # get 'users/:id/new'
