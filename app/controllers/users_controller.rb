@@ -1,12 +1,8 @@
 class UsersController < ApplicationController
-  before_action :load_user, only: [:destroy, :block, :show]
+  before_action :load_user, only: [:destroy, :block, :unblock]
 
   def index
     @users = User.all
-  end
-
-  def show
-    @user = User.find(params[:id])
   end
 
   def destroy
@@ -16,8 +12,12 @@ class UsersController < ApplicationController
   end
 
   def block
-    @user = User.find(params[:id]) unless @user == current_user
-    @user.update(blocked_at: Time.now)
+    @user.update(blocked_at: Time.now) unless @user == current_user
+    redirect_to users_path
+  end
+
+  def unblock
+    @user.update(blocked_at: nil) unless @user == current_user
     redirect_to users_path
   end
 
