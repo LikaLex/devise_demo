@@ -16,6 +16,12 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def block
+    @user = User.find(params[:id])
+    @user.update(blocked_at: Time.now)
+    redirect_to users_path
+  end
+
   private
 
   def test
