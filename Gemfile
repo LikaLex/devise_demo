@@ -48,6 +48,9 @@ group :development, :test do
   gem 'letter_opener'
 end
 
+gem 'devise-bootstrapped'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'

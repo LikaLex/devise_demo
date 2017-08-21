@@ -1,23 +1,25 @@
 <div class="users" id="test">
   <p>
   </p>
-  <table class="table">
+  <table id="users_table" class="table table-hover table-striped">
     <thead>
       <tr>
         <th>id</th>
         <th>email</th>
-        <th></th>
+        <th>state</th>
+        <th class="hidden"></th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
-        <tr>
+        <tr class="<%= 'current-user' if current_user == user %>">
           <td><%= user.id %></td>
-          <td><%= user.email %></td>
-          <td>
-            <%= link_to('Delete', user_path(user), method: :delete) unless user == current_user %>
-            <%= link_to('Block', block_user_path(user), method: :patch) if user != current_user && !user.blocked? %>
-            <%= link_to('Unblock', unblock_user_path(user), method: :patch) if user.blocked? %>
+          <td class="email"><%= user.email %></td>
+          <td><%= 'Blocked' if user.blocked? %></td>
+          <td class="hidden user-controls">
+            <%= link_to('Delete', user_path(user), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure?'}) unless user == current_user %>
+            <%= link_to('Block', block_user_path(user), method: :patch, class: 'btn btn-warning') if user != current_user && !user.blocked? %>
+            <%= link_to('Unblock', unblock_user_path(user), method: :patch, class: 'btn btn-success') if user.blocked? %>
           </td>
         </tr>
       <% end %>

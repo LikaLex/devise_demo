@@ -1,0 +1,11 @@
+#users_table {
+  table-layout: fixed;
+  margin: auto;
+
+  .active td {
+    background: lightblue;
+  }
+  .current-user td {
+    background: darkseagreen;
+  }
+}
