@@ -1,15 +1,22 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
+  include PgSearch
 
-  has_many :identities, dependent: :destroy
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
+  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
          omniauth_providers: [:facebook, :twitter, :vkontakte]
+
+  pg_search_scope :search_for,
+                  against: %i(email),
+                  using: {
+                      tsearch: {prefix: true}
+                  }
+
+  has_many :identities, dependent: :destroy
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
