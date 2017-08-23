@@ -29,6 +29,8 @@ gem 'omniauth-vkontakte'
 gem 'figaro'
 gem 'kaminari'
 gem 'lodash-rails'
+gem 'mechanize'
+gem 'whenever'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
