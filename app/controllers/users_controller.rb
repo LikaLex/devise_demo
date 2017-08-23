@@ -2,7 +2,13 @@ class UsersController < ApplicationController
   before_action :load_user, only: [:destroy, :block, :unblock]
 
   def index
-    @users = User.all
+    @users =
+        if params[:query].present?
+          User.search_for(params[:query])
+        else
+          User.all
+        end
+    @users = @users.page(params[:page]).per(5)
   end
 
   def destroy

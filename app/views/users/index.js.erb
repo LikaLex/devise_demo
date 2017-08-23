@@ -1,0 +1,6 @@
+<% if @users.first_page? %>
+  $('#users_table').find('tbody').html("<%= j render(partial: 'user', collection: @users) %> ")
+  window.totalPages = parseInt(<%= @users.total_pages %>)
+<% else %>
+  $('#users_table').find('tbody').append("<%= j render(partial: 'user', collection: @users) %> ")
+<% end %>
