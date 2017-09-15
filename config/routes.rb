@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     patch :unblock, on: :member
   end
 
+  resources :documents
+
   # get 'users/:id'
   # get 'users'
   # get 'users/:id/new'

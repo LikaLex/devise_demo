@@ -1,0 +1,17 @@
+<script>
+    window.totalPages = parseInt(<%= @documents.total_pages %>)
+</script>
+
+<div class="documents">
+  <%= form_with url: documents_path, method: :get, id: :search_form do |f| %>
+      <%= f.text_field :query, class: 'form-control' %>
+      <%= f.hidden_field :page %>
+  <% end %>
+  <div id="result_count">
+    <span>Documents found: </span>
+    <span class="count"><%= @documents.total_count %></span>
+  </div>
+  <ul class="list-group" id="documents_list">
+    <%= render partial: 'document', collection: @documents %>
+  </ul>
+</div>

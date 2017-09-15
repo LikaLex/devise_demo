@@ -1,0 +1,8 @@
+<% if @documents.first_page? %>
+  $('#documents_list').html("<%= j render(partial: 'document', collection: @documents) %> ")
+  window.totalPages = parseInt(<%= @documents.total_pages %>)
+<% else %>
+  $('#documents_list').append("<%= j render(partial: 'document', collection: @documents) %> ")
+<% end %>
+
+$('#result_count .count').html(<%= @documents.total_count %>)
